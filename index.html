@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QR Code Scanner</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            height: 100vh;
+            margin: 0;
+        }
+
+        #scanMessage {
+            display: none;
+            color: green;
+            font-size: 18px;
+        }
+    </style>
+</head>
+
+<body>
+    <img src="hm.png" alt="" width="500px">
+    <div id="scanMessage">QR Code Scanned! Thank you!</div>
+    <div id="content">Initial content</div>
+
+    <script>
+        // Function to display the scan message
+        function showScanMessage() {
+            const scanMessage = document.getElementById('scanMessage');
+            scanMessage.style.display = 'block';
+        }
+
+        // Function to update content based on URL parameters
+        function updateContentFromUrl() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const scannedContent = urlParams.get('content');
+
+            if (scannedContent) {
+                const contentElement = document.getElementById('content');
+                contentElement.innerText = scannedContent;
+            }
+        }
+
+        // Call the function to update content when the page loads
+        window.onload = updateContentFromUrl;
+    </script>
+
+</body>
+
+</html>
